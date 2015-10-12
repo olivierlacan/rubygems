@@ -231,7 +231,7 @@ install:
 
     assert_match(/\AERROR: Failed to build gem native extension.$/, e.message)
 
-    assert_equal "Building native extensions.  This could take a while...\n",
+    assert_equal "Building native extensions. This could take a while...\n",
                  @ui.output
     assert_equal '', @ui.error
 
@@ -264,7 +264,7 @@ install:
 
     assert_match(/^\s*No builder for extension ''$/, e.message)
 
-    assert_equal "Building native extensions.  This could take a while...\n",
+    assert_equal "Building native extensions. This could take a while...\n",
                  @ui.output
     assert_equal '', @ui.error
 
@@ -331,4 +331,3 @@ install:
   end
 
 end
-
