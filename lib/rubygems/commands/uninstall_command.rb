@@ -89,6 +89,11 @@ class Gem::Commands::UninstallCommand < Gem::Command
       options[:vendor] = true
       options[:install_dir] = Gem.vendor_dir
     end
+
+    add_option('--include-dependents',
+               'Uninstall all gems the uninstall gem depends on.') do |value, options|
+      options[:include_dependents] = true
+    end
   end
 
   def arguments # :nodoc:

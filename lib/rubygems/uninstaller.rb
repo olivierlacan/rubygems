@@ -53,6 +53,7 @@ class Gem::Uninstaller
     @bin_dir            = options[:bin_dir]
     @format_executable  = options[:format_executable]
     @abort_on_dependent = options[:abort_on_dependent]
+    @include_dependents = options[:include_dependents]
 
     # Indicate if development dependencies should be checked when
     # uninstalling. (default: false)
@@ -302,6 +303,14 @@ class Gem::Uninstaller
 
   def abort_on_dependent? # :nodoc:
     @abort_on_dependent
+  end
+
+  ##
+  # Should the uninstallation also uninstall gems that this gem depends on?
+  #
+
+  def include_dependents? # :nodoc:
+    @include_dependents
   end
 
   ##

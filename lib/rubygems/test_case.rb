@@ -684,6 +684,8 @@ class Gem::TestCase < (defined?(Minitest::Test) ? Minitest::Test : MiniTest::Uni
       io.write spec.to_ruby_for_cache
     end
 
+    binding.irb
+
     spec.loaded_from = written_path
 
     Gem::Specification.reset

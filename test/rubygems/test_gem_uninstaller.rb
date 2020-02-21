@@ -571,4 +571,21 @@ create_makefile '#{@spec.name}'
     end
   end
 
+  def test_uninstall_correctly_remove_all_dependent_gems_when_include_dependents_set
+    quick_gem 'r', '1' do |s|
+      s.add_dependency 'q', '= 1'
+    end
+
+    quick_gem 'q', '1'
+
+    uninstaller = Gem::Uninstaller.new('r', :include_dependents => true)
+    # uninstaller.uninstall
+
+    gem_dir = File.join @gemhome, 'gems', 'r'
+    dep_gem_dir = File.join @gemhome, 'gems', 'q'
+
+    binding.irb
+
+    refute File.exist?(gem_dir)
+  end
 end
