@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'benchmark'
-require 'rubygems/test_case'
+require_relative 'helper'
 require 'date'
 require 'pathname'
 require 'stringio'
@@ -2649,7 +2649,7 @@ end
 
     yaml_str = @a1.to_yaml
 
-    same_spec = YAML.load yaml_str
+    same_spec = load_yaml yaml_str
 
     assert_equal Gem::Platform.new('powerpc-darwin7'), same_spec.platform
     assert_equal 'powerpc-darwin7.9.0', same_spec.original_platform
@@ -3612,7 +3612,7 @@ Did you mean 'Ruby'?
         @m2.validate
       end
 
-      assert_equal "metadata key too large (129 > 128)", e.message
+      assert_equal "metadata key is too large (129 > 128)", e.message
     end
   end
 
@@ -3629,7 +3629,7 @@ Did you mean 'Ruby'?
         @m2.validate
       end
 
-      assert_equal "metadata values must be a String", e.message
+      assert_equal "metadata['fail'] value must be a String", e.message
     end
   end
 
@@ -3646,7 +3646,7 @@ Did you mean 'Ruby'?
         @m2.validate
       end
 
-      assert_equal "metadata value too large (1025 > 1024)", e.message
+      assert_equal "metadata['fail'] value is too large (1025 > 1024)", e.message
     end
   end
 

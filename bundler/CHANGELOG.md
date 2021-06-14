@@ -1,3 +1,42 @@
+# 2.2.20 (June 11, 2021)
+
+## Enhancements:
+
+  - Don't print bug report template on server side errors [#4663](https://github.com/rubygems/rubygems/pull/4663)
+  - Don't load `resolv` unnecessarily [#4640](https://github.com/rubygems/rubygems/pull/4640)
+
+## Bug fixes:
+
+  - Fix `bundle outdated` edge case [#4648](https://github.com/rubygems/rubygems/pull/4648)
+  - Fix `bundle check` with scoped rubygems sources [#4639](https://github.com/rubygems/rubygems/pull/4639)
+
+## Performance:
+
+  - Don't use `extra_rdoc_files` with md files in gemspec to make installing bundler with docs faster [#4628](https://github.com/rubygems/rubygems/pull/4628)
+
+# 2.2.19 (May 31, 2021)
+
+## Bug fixes:
+
+  - Restore support for configuration keys with dashes [#4582](https://github.com/rubygems/rubygems/pull/4582)
+  - Fix some cached gems being unintentionally ignored when using rubygems 3.2.18 [#4623](https://github.com/rubygems/rubygems/pull/4623)
+
+# 2.2.18 (May 25, 2021)
+
+## Security fixes:
+
+  - Fix dependency confusion issues with implicit dependencies [#4609](https://github.com/rubygems/rubygems/pull/4609)
+
+## Enhancements:
+
+  - Use simpler notation for generated `required_ruby_version` [#4598](https://github.com/rubygems/rubygems/pull/4598)
+  - Undeprecate bundle show [#4586](https://github.com/rubygems/rubygems/pull/4586)
+  - Make sure link to new issue uses the proper template [#4592](https://github.com/rubygems/rubygems/pull/4592)
+
+## Bug fixes:
+
+  - Fix platform specific gems being removed from the lockfile [#4580](https://github.com/rubygems/rubygems/pull/4580)
+
 # 2.2.17 (May 5, 2021)
 
 ## Enhancements:

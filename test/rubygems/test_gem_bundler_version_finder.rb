@@ -1,19 +1,17 @@
 # frozen_string_literal: true
-require 'rubygems/test_case'
+require_relative 'helper'
 
 class TestGemBundlerVersionFinder < Gem::TestCase
   def setup
     super
 
     @argv = ARGV.dup
-    @env = ENV.to_hash.clone
-    ENV.delete("BUNDLER_VERSION")
     @dollar_0 = $0
+    without_any_upwards_gemfiles
   end
 
   def teardown
     ARGV.replace @argv
-    ENV.replace @env
     $0 = @dollar_0
 
     super

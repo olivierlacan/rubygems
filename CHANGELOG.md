@@ -1,3 +1,28 @@
+# 3.2.20 / 2021-06-11
+
+## Security fixes:
+
+* Verify plaform before installing to avoid potential remote code
+  execution. Pull request #4667 by sonalkr132
+
+## Enhancements:
+
+* Add better specification policy error description. Pull request #4658 by
+  ceritium
+
+# 3.2.19 / 2021-05-31
+
+## Enhancements:
+
+* Fix `gem help build` output format. Pull request #4613 by tnir
+
+# 3.2.18 / 2021-05-25
+
+## Enhancements:
+
+* Don't leave temporary directory around when building extensions to
+  improve build reproducibility. Pull request #4610 by baloo
+
 # 3.2.17 / 2021-05-05
 
 ## Enhancements:

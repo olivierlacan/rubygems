@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rubygems/package/tar_test_case'
+require_relative 'package/tar_test_case'
 require 'digest'
 
 class TestGemPackage < Gem::Package::TarTestCase
@@ -98,7 +98,7 @@ class TestGemPackage < Gem::Package::TarTestCase
       },
     }
 
-    assert_equal expected, YAML.load(checksums)
+    assert_equal expected, load_yaml(checksums)
   end
 
   def test_build_time_uses_source_date_epoch

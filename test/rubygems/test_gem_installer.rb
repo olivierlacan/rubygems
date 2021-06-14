@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'rubygems/installer_test_case'
+require_relative 'installer_test_case'
 
 class TestGemInstaller < Gem::InstallerTestCase
   def setup
@@ -740,7 +740,6 @@ gem 'other', version
 
     installer = Gem::Installer.at(
       gem_with_dangling_symlink,
-      :install_dir => @gem_home,
       :user_install => false,
       :force => true
     )
@@ -1482,6 +1481,7 @@ gem 'other', version
 
   def test_install_extension_and_script
     pend "Makefile creation crashes on jruby" if Gem.java_platform?
+    pend if /mswin/ =~ RUBY_PLATFORM && ENV.key?('GITHUB_ACTIONS') # not working from the beginning
 
     @spec = setup_base_spec
     @spec.extensions << "extconf.rb"
@@ -1773,6 +1773,26 @@ gem 'other', version
         installer.pre_install_checks
       end
       assert_equal "#<Gem::Specification name=malicious version=1> has an invalid dependencies", e.message
+    end
+  end
+
+  def test_pre_install_checks_malicious_platform_before_eval
+    gem_with_ill_formated_platform = File.expand_path("packages/ill-formatted-platform-1.0.0.10.gem", __dir__)
+
+    installer = Gem::Installer.at(
+      gem_with_ill_formated_platform,
+      :install_dir => @gem_home,
+      :user_install => false,
+      :force => true
+    )
+
+    use_ui @ui do
+      e = assert_raise Gem::InstallError do
+        installer.pre_install_checks
+      end
+
+      assert_equal "x86-mswin32\n system('id > /tmp/nyangawa')# is an invalid platform", e.message
+      assert_empty @ui.output
     end
   end
 
